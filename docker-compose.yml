@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: recetario
+      POSTGRES_PASSWORD: recetario
+      POSTGRES_DB: recetario
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U recetario"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # DB_HOST=db (nombre del servicio, no localhost): dentro de la red
+      # de docker compose los contenedores se resuelven por nombre.
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: recetario
+      DB_PASSWORD: recetario
+      DB_NAME: recetario
+      PORT: 3000
+    ports:
+      - "3000:3000"
+
+volumes:
+  db_data:

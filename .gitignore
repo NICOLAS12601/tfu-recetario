@@ -1,0 +1,29 @@
+# compiled output
+/dist
+/node_modules
+*.tsbuildinfo
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# tests
+/coverage
+/.vitest-cache
+
+# env
+.env
+.env.local
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Docker
+*.pid
