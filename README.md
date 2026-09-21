@@ -15,7 +15,9 @@ API REST que integra un recetario con una cocina real: no es solo un catálogo d
 
 ## 1. Modelo de componentes
 
-El sistema está armado en cuatro componentes, cada uno implementado como un módulo de NestJS (`ProductoModule`, `RecetaModule`, `ApiPreciosModule`, `ListaDeComprasModule` en `src/`). Cada componente expone lo que hace hacia afuera a través de una interfaz de TypeScript explícita (un archivo `*.contract.ts`) que su service implementa; eso es lo que en el diagrama UML (hecho aparte, en draw.io) se dibuja como la interfaz provista de cada uno.
+El sistema está armado en cuatro componentes, cada uno implementado como un módulo de NestJS (`ProductoModule`, `RecetaModule`, `ApiPreciosModule`, `ListaDeComprasModule` en `src/`). Cada componente expone lo que hace hacia afuera a través de una interfaz de TypeScript explícita (un archivo `*.contract.ts`) que su service implementa; eso es lo que en el diagrama UML se dibuja como la interfaz provista de cada uno.
+
+El diagrama UML de clases/componentes está en [docs/recetario.drawio.xml](docs/recetario.drawio.xml). Para verlo/editarlo: abrilo en [app.diagrams.net](https://app.diagrams.net) (File → Open from → Device) o con la extensión "Draw.io Integration" de VS Code, que lo renderiza directo en el editor sin salir del repo.
 
 - **Producto** (interfaz provista: `IProductoStock`, en [src/producto/producto.contract.ts](src/producto/producto.contract.ts)) es el dueño del stock de cada ingrediente. Es el único componente que sabe leer y modificar stock; ningún otro componente toca la tabla de productos directamente. No depende de ningún otro componente del sistema.
 - **Receta** (interfaz provista: `IRecetaConsulta`, en [src/receta/receta.contract.ts](src/receta/receta.contract.ts)) sabe qué productos y en qué cantidad necesita cada plato. Para descontar stock al cocinar, **consume** la interfaz de Producto en vez de tocar el stock por su cuenta.
