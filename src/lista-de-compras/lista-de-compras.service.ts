@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { RecetaService } from '../receta/receta.service.js';
 import { ApiPreciosService } from '../api-precios/api-precios.service.js';
 import { reintentar } from './reintentar.js';
+import { cachePrecios } from './cache-precios.js';
 
 import type {
   ItemListaDeCompras,
@@ -48,11 +49,16 @@ export class ListaDeComprasService {
 
     const items: ItemListaDeCompras[] = [];
     for (const [productoId, { nombre, cantidad }] of faltantesPorProducto) {
-      const precioUnitario = await reintentar(
-        () => this.apiPreciosService.obtenerPrecio(nombre),
-        INTENTOS_MAXIMOS,
-        ESPERA_MS,
-      );
+      let precioUnitario = cachePrecios.get(nombre);
+      if (precioUnitario === undefined) {
+        precioUnitario = await reintentar(
+          () => this.apiPreciosService.obtenerPrecio(nombre),
+          INTENTOS_MAXIMOS,
+          ESPERA_MS,
+        );
+        cachePrecios.set(nombre, precioUnitario);
+      }
+
       items.push({
         productoId,
         nombre,
