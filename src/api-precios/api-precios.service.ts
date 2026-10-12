@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { IPrecioProvider } from './api-precios.contract.js';
 
 const PRECIOS_BASE: Record<string, number> = {
@@ -13,6 +13,7 @@ const PRECIOS_BASE: Record<string, number> = {
   leche: 70,
   pan: 65,
 };
+const PROBABILIDAD_DE_FALLA = 0.3;
 
 /**
  * No pega a ninguna API real: simula la integración externa con precios
@@ -23,10 +24,17 @@ const PRECIOS_BASE: Record<string, number> = {
 export class ApiPreciosService implements IPrecioProvider {
   async obtenerPrecio(nombreProducto: string): Promise<number> {
     await this.simularLatenciaDeRed();
+    this.simularFallaTransitoria();
     const clave = nombreProducto.trim().toLowerCase();
     const base = PRECIOS_BASE[clave] ?? this.precioBasePorNombre(clave);
     const variacion = 0.9 + Math.random() * 0.2; // +-10%
     return Math.round(base * variacion);
+  }
+
+  private simularFallaTransitoria(): void {
+    if(Math.random() < PROBABILIDAD_DE_FALLA) {
+      throw new ServiceUnavailableException();
+    }
   }
 
   private precioBasePorNombre(texto: string): number {

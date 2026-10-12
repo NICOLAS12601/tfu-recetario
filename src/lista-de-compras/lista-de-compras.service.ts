@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { RecetaService } from '../receta/receta.service.js';
 import { ApiPreciosService } from '../api-precios/api-precios.service.js';
+import { reintentar } from './reintentar.js';
+
 import type {
   ItemListaDeCompras,
   ListaDeCompras,
 } from './lista-de-compras.contract.js';
+
+const INTENTOS_MAXIMOS = 3;
+const ESPERA_MS = 100;
 
 @Injectable()
 export class ListaDeComprasService {
@@ -43,7 +48,11 @@ export class ListaDeComprasService {
 
     const items: ItemListaDeCompras[] = [];
     for (const [productoId, { nombre, cantidad }] of faltantesPorProducto) {
-      const precioUnitario = await this.apiPreciosService.obtenerPrecio(nombre);
+      const precioUnitario = await reintentar(
+        () => this.apiPreciosService.obtenerPrecio(nombre),
+        INTENTOS_MAXIMOS,
+        ESPERA_MS,
+      );
       items.push({
         productoId,
         nombre,
