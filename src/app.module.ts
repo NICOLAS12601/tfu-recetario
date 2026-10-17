@@ -7,6 +7,7 @@ import { ProductoModule } from './producto/producto.module.js';
 import { RecetaModule } from './receta/receta.module.js';
 import { ApiPreciosModule } from './api-precios/api-precios.module.js';
 import { ListaDeComprasModule } from './lista-de-compras/lista-de-compras.module.js';
+import { ConfiguracionModule } from './configuracion/configuracion.module.js';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ListaDeComprasModule } from './lista-de-compras/lista-de-compras.module
         synchronize: true,
       }),
     }),
+    ConfiguracionModule,
     ProductoModule,
     RecetaModule,
     ApiPreciosModule,

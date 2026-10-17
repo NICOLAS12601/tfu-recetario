@@ -10,6 +10,7 @@ API REST que integra un recetario con una cocina real: no es solo un catálogo d
 4. [Contenedores vs VMs](#4-contenedores-vs-vms)
 5. [ACID vs BASE](#5-acid-vs-base)
 6. [Cómo correr el proyecto](#6-cómo-correr-el-proyecto)
+7. [Patrones de arquitectura aplicados](#7-patrones-de-arquitectura-aplicados)
 
 ---
 
@@ -74,23 +75,35 @@ BASE (consistencia eventual) hubiera sido razonable para algo como el precio de 
 
 ## 6. Cómo correr el proyecto
 
-**Todo en Docker** (API + Postgres, requiere solo Docker):
+**Todo en Docker** (gateway + API + Postgres; requiere solo Docker):
 
 ```bash
-docker compose up -d --build   # build de la imagen de la api + levanta db y api
-# API en http://localhost:3000
+docker compose up -d --build   # build de la imagen del gateway y de la api + levanta db, api y gateway
+# Único punto de entrada: https://localhost  (certificado autofirmado)
 ```
 
-**Desarrollo local con watch** (requiere Node 22+; recompila solo al guardar):
+La API y la base de datos **no publican puertos**: solo el gateway los expone.
+Todo el tráfico entra por el gatekeeper, que exige el header `X-Api-Key`:
 
 ```bash
-docker compose up -d db     # solo levanta Postgres
+curl -k -H 'X-Api-Key: clave-de-demo' https://localhost/productos
+```
+
+La clave se define con `GATEKEEPER_API_KEY` (ver `.env.example`; por defecto
+`clave-de-demo`).
+
+**Desarrollo local con watch** (requiere Node 22+; recompila solo al guardar).
+Como la API y la base no publican puertos por defecto, se usa un override que
+solo los expone para desarrollo:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d db   # Postgres con el puerto publicado (solo dev)
 cp .env.example .env        # (ya existe, ver valores por defecto)
 npm install
-npm run start:dev           # API en http://localhost:3000
+npm run start:dev           # API en http://localhost:3000 (sin gateway)
 ```
 
-Endpoints:
+Endpoints (a través del gateway requieren el header `X-Api-Key`):
 
 | Método | Ruta | Qué hace |
 |---|---|---|
@@ -107,3 +120,47 @@ Endpoints:
 | POST | `/recetas/:id/cocinar` | Descuenta el stock de todos los ingredientes en una sola transacción |
 | GET | `/lista-de-compras/receta/:recetaId` | Lista de compras (con precios) de lo que falta para esa receta |
 | POST | `/lista-de-compras` | Lista de compras combinada para varias recetas (`{ recetaIds: [...] }`) |
+| POST | `/lista-de-compras/solicitudes` | Encola la lista (asincrónico): responde 202 con `Location` para consultar el resultado |
+| GET | `/lista-de-compras/solicitudes/:id` | Consulta el estado/resultado de una solicitud encolada |
+| GET | `/configuracion` | Parámetros de configuración vigentes |
+| PATCH | `/configuracion/:clave` | Cambia un parámetro de configuración (`{ valor }`) |
+
+## 7. Patrones de arquitectura aplicados
+
+Además de la partición en componentes, el sistema aplica patrones de varias
+categorías. Los de disponibilidad, rendimiento y configuración viven en el
+código de la API; los de seguridad, en el contenedor de entrada.
+
+### Disponibilidad
+- **Retry** ([src/lista-de-compras/reintentar.ts](src/lista-de-compras/reintentar.ts)):
+  ante una falla transitoria del proveedor de precios, reintenta la cantidad de
+  intentos configurada antes de darse por vencido.
+- **Rate limit** ([src/limitar-solicitudes.ts](src/limitar-solicitudes.ts)):
+  limita la cantidad de solicitudes por cliente en una ventana de tiempo; al
+  superarla responde 429.
+
+### Rendimiento
+- **Cache-aside** ([src/lista-de-compras/cache-precios.ts](src/lista-de-compras/cache-precios.ts)):
+  consulta una caché de precios antes de ir al proveedor y guarda el resultado
+  cuando falta.
+- **Asynchronous request-reply**
+  ([src/lista-de-compras/lista-de-compras.controller.ts](src/lista-de-compras/lista-de-compras.controller.ts)):
+  `POST /lista-de-compras/solicitudes` responde 202 con la ubicación del
+  resultado y el cliente lo consulta después con `GET`.
+
+### Seguridad
+- **Gatekeeper** ([gateway/](gateway)): el gateway es el único punto de entrada.
+  Exige una API key (`X-Api-Key`) y rechaza rutas, métodos y tamaños de cuerpo
+  no previstos. La API y la base de datos dejan de publicar puertos.
+- **Gateway offloading** ([gateway/](gateway)): el mismo contenedor de entrada
+  se hace cargo del cifrado (TLS), la compresión (gzip) y el registro de acceso.
+  La API no implementa ninguna de esas tres cosas.
+
+### Modificación y despliegue
+- **External configuration store**
+  ([src/configuracion/](src/configuracion)): los parámetros de los patrones
+  anteriores (intentos y espera del retry, límite del rate limit, expiración de
+  la caché y probabilidad de falla simulada de precios) viven en la tabla
+  `configuracion`. La API mantiene una copia local que refresca cada pocos
+  segundos, y se pueden cambiar en caliente por `PATCH /configuracion/:clave`
+  (o por SQL) sin recompilar ni reiniciar.
