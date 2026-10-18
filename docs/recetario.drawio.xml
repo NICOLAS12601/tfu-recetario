@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mxfile host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36">
-  <diagram id="c4acf3e9-155e-7222-9cf6-157b1a14988f" name="Página-1">
-    <mxGraphModel dx="2014" dy="1596" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+<mxfile host="app.diagrams.net" pages="4">
+  <diagram id="c4acf3e9-155e-7222-9cf6-157b1a14988f" name="Clases-dominio">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -115,6 +114,289 @@
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="-610" y="420" as="sourcePoint" />
             <mxPoint x="-500" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-1" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=open;endFill=0;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="_hwAiq79fKfkc2yEhJd1-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="740" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-2" parent="1" style="swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" value="Producto" vertex="1">
+          <mxGeometry height="110" width="160" x="275" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-3" parent="_hwAiq79fKfkc2yEhJd1-2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ id: String" vertex="1">
+          <mxGeometry height="26" width="160" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-4" parent="_hwAiq79fKfkc2yEhJd1-2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ nombre: string" vertex="1">
+          <mxGeometry height="26" width="160" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-5" parent="_hwAiq79fKfkc2yEhJd1-2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ stock: number" vertex="1">
+          <mxGeometry height="26" width="160" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-6" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;" target="_hwAiq79fKfkc2yEhJd1-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-7" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;span style=&quot;font-family: Verdana; font-size: 10px;&quot;&gt;ProductoService&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- productoRepository: Repository&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- dataSource: DataSource&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(117, 117, 117));&quot;&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+&lt;/span&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt; crear(dto: CreateProductoDto): Promise&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ listar(): Promise&amp;lt;Producto[]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ obtenerPorId(id: string): Promise&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ consumirStock(id: string, cantidad: number): Promise&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ consumirStockEnTransaccion(manager: EntityManager, id: string, cantidad: number): Promise&amp;lt;void&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ reponerStock(id: string, cantidad: number): Promise&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="180" width="540" x="-790" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-8" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;" target="_hwAiq79fKfkc2yEhJd1-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-9" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;span style=&quot;font-family: Verdana; font-size: 10px;&quot;&gt;ProductoController&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- productoService: ProductoService&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;span style=&quot;font-size: 0.9em; white-space: normal;&quot;&gt;+&lt;/span&gt;&lt;font&gt;&lt;span style=&quot;white-space: normal;&quot;&gt; crear(dto: CreateProductoDto)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ listar()&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ obtenerPorId(id: string)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ consumirStock(id: string, dto: ConsumirStockDto)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ reponerStock(id: string, dto: ConsumirStockDto)&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="140" width="285" x="-662.5" y="-170" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-10" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IProductoStock&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;span style=&quot;font-size: 0.9em; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+&lt;/span&gt;&lt;font face=&quot;Helvetica&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt; listar(): Promise&amp;lt;Producto[]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ obtenerPorId(id: string): Promise&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ consumirStock(id: string, cantidad: number): Promise&amp;lt;Producto&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;+ consumirStockEnTransaccion(manager: EntityManager, id: string, cantidad: number): Promise&amp;lt;void&amp;gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="119" width="550" x="-140" y="80.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-11" parent="1" style="swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" value="Receta" vertex="1">
+          <mxGeometry height="120" width="210" x="250" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-12" parent="_hwAiq79fKfkc2yEhJd1-11" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ id: String" vertex="1">
+          <mxGeometry height="26" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-13" parent="_hwAiq79fKfkc2yEhJd1-11" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ nombre: string" vertex="1">
+          <mxGeometry height="26" width="210" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-14" parent="_hwAiq79fKfkc2yEhJd1-11" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ ingredientes: RecetaIngrediente[ ]&amp;nbsp;" vertex="1">
+          <mxGeometry height="42" width="210" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-15" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=diamondThin;endFill=1;endSize=16;" target="_hwAiq79fKfkc2yEhJd1-11" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-16" parent="1" style="swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" value="RecetaIngrediente" vertex="1">
+          <mxGeometry height="160" width="210" x="250" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-17" parent="_hwAiq79fKfkc2yEhJd1-16" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ id: String" vertex="1">
+          <mxGeometry height="26" width="210" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-18" parent="_hwAiq79fKfkc2yEhJd1-16" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ receta: Receta" vertex="1">
+          <mxGeometry height="26" width="210" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-19" parent="_hwAiq79fKfkc2yEhJd1-16" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ producto: Producto" vertex="1">
+          <mxGeometry height="32" width="210" y="78" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-20" parent="_hwAiq79fKfkc2yEhJd1-16" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="+ cantidad: number" vertex="1">
+          <mxGeometry height="26" width="210" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-21" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;" target="_hwAiq79fKfkc2yEhJd1-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-22" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;span style=&quot;font-family: Verdana; font-size: 10px;&quot;&gt;RecetaService&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;code style=&quot;background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; white-space: normal; padding: 2px 4px; border-radius: 3px; word-break: break-word;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;-&lt;/font&gt;&lt;/code&gt;&lt;font&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;code style=&quot;background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; white-space: normal; padding: 2px 4px; border-radius: 3px; word-break: break-word;&quot;&gt;recetaRepository: Repository&amp;lt;Receta&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;code style=&quot;background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; white-space: normal; padding: 2px 4px; border-radius: 3px; word-break: break-word;&quot;&gt;- ingredienteRepository: Repository&amp;lt;RecetaIngrediente&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;code style=&quot;background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; white-space: normal; padding: 2px 4px; border-radius: 3px; word-break: break-word;&quot;&gt;- productoService: ProductoService&lt;/code&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;&amp;nbsp; -&amp;nbsp; dataSource: DataSource&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/font&gt;&lt;hr size=&quot;1&quot;&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal; color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;+&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt; crear(dto: CreateRecetaDto): Promise&amp;lt;Receta&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ listar(): Promise&amp;lt;Receta[]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ obtenerPorId(id: string): Promise&amp;lt;Receta&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;code style=&quot;white-space: normal; background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; padding: 2px 4px; border-radius: 3px; word-break: break-word;&quot;&gt;- calcularEstadoIngredientes(receta: Receta): Promise&amp;lt;IngredienteEstado[]&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ verificarDisponibilidad(id: string): Promise&amp;lt;Disponibilidad&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ obtenerDetalle(id: string): Promise&amp;lt;DetalleReceta&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ cocinar(id: string): Promise&amp;lt;Receta&amp;gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="220" width="500" x="-770" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-23" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;" target="_hwAiq79fKfkc2yEhJd1-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-24" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;span style=&quot;font-family: Verdana; font-size: 10px;&quot;&gt;RecetaController&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- recetaService: RecetaService&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ crear(dto: CreateRecetaDto)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ listar()&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ obtenerPorId(id: string)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ verificarDisponibilidad(id: string)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ obtenerDetalle(id: string)&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ cocinar(id: string)&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="160" width="190" x="-615" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-25" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IRecetaConsulta&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ listar(): Promise&amp;lt;Receta[]&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ obtenerPorId(id: string): Promise&amp;lt;Receta&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ obtenerDetalle(id: string): Promise&amp;lt;DetalleReceta&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ verificarDisponibilidad(id: string): Promise&amp;lt;Disponibilidad&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ cocinar(id: string): Promise&amp;lt;Receta&amp;gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="119" width="330" x="-140" y="420.5" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-26" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;endSize=16;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="_hwAiq79fKfkc2yEhJd1-29" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-27" parent="1" style="swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=10;align=center;" value="ApiPreciosService" vertex="1">
+          <mxGeometry height="100" width="345" x="-310" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-28" parent="_hwAiq79fKfkc2yEhJd1-27" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(117, 117, 117));&quot;&gt;&lt;font&gt;+ obtenerPrecio(nombreProducto: string): Promise&amp;lt;number&amp;gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;code style=&quot;background-image: none; background-position: 0% 0%; background-size: auto; background-repeat: repeat; background-attachment: scroll; background-origin: padding-box; background-clip: border-box; padding: 2px 4px; border-radius: 3px; word-break: break-word;&quot;&gt;- precioBasePorNombre(texto: string): number&lt;/code&gt;&lt;br&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;- simularLatenciaDeRed(): Promise&amp;lt;void&amp;gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="54" width="345" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-29" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IPrecioProvider&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif; white-space: normal;&quot;&gt;+ obtenerPrecio(nombreProducto: string): Promise&amp;lt;number&amp;gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="330" x="-302.5" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-30" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="_hwAiq79fKfkc2yEhJd1-22" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-31" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=open;endFill=0;" target="_hwAiq79fKfkc2yEhJd1-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-32" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;ListaDeComprasService&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- recetaService: RecetaService&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- apiPreciosService: ApiPreciosService&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;+ generar(recetaIds: string[ ]): Promise&amp;lt;ListaDeCompras&amp;gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="100" width="310" x="-800" y="860" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-33" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;" target="_hwAiq79fKfkc2yEhJd1-32" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-34" parent="1" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;font face=&quot;Verdana&quot;&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;ListaDeComprasController&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;- listaDeComprasService: ListaDeComprasService&lt;/span&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;&amp;nbsp;+ generarParaReceta(recetaId: string)&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;&lt;font&gt;&lt;span style=&quot;white-space: normal; font-family: -apple-system, BlinkMacSystemFont, &amp;quot;Segoe UI&amp;quot;, Roboto, sans-serif;&quot;&gt;&amp;nbsp;+ generar(dto: GenerarListaDto)&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="310" x="-800" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="_hwAiq79fKfkc2yEhJd1-35" edge="1" parent="1" source="_hwAiq79fKfkc2yEhJd1-22" style="endArrow=open;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endFill=0;" target="_hwAiq79fKfkc2yEhJd1-7" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-610" y="420" as="sourcePoint" />
+            <mxPoint x="-500" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Componentes" name="Componentes">
+    <mxGraphModel dx="1355" dy="704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" value="Cliente" vertex="1">
+          <mxGeometry height="70" width="40" x="30" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="shape=component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" value="&lt;b&gt;Gateway&lt;/b&gt; (nginx)&lt;br&gt;«Gatekeeper» + «Gateway Offloading»" vertex="1">
+          <mxGeometry height="110" width="200" x="150" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fillColor=none;dashed=1;spacingLeft=6;spacingTop=4;" value="API (NestJS)" vertex="1">
+          <mxGeometry height="430" width="280" x="400" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="shape=component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" value="Producto" vertex="1">
+          <mxGeometry height="55" width="180" x="440" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="shape=component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" value="Receta" vertex="1">
+          <mxGeometry height="55" width="180" x="440" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="shape=component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" value="Lista de Compras" vertex="1">
+          <mxGeometry height="55" width="180" x="440" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" parent="1" style="shape=component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" value="Api Precios" vertex="1">
+          <mxGeometry height="55" width="180" x="440" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" parent="1" style="shape=component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;" value="Configuración&lt;br&gt;&lt;font style=&#39;font-size:9px&#39;&gt;«External Config Store»&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="180" x="440" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="PostgreSQL&lt;br&gt;&lt;font style=&#39;font-size:9px&#39;&gt;tabla configuracion&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="170" x="825" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;align=left;spacingLeft=6;spacingTop=4;" value="&lt;b&gt;Gateway offloading:&lt;/b&gt; el gateway cifra (TLS), comprime (gzip) y registra accesos;&lt;br&gt;la API no implementa ninguna de las tres.&lt;br&gt;&lt;br&gt;&lt;b&gt;Gatekeeper:&lt;/b&gt; exige API key y rechaza rutas/métodos/cuerpo no previstos.&lt;br&gt;&lt;br&gt;&lt;b&gt;Configuración&lt;/b&gt; es transversal: la consumen ApiPrecios, Lista de Compras y el rate limit." vertex="1">
+          <mxGeometry height="200" width="280" x="100" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" edge="1" parent="1" source="c1" style="endArrow=open;html=1;rounded=0;" target="c2" value="HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" edge="1" parent="1" source="c2" style="endArrow=open;html=1;rounded=0;" target="c3" value="HTTP interno (proxy)">
+          <mxGeometry relative="1" x="0.0846" y="13" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c13" edge="1" parent="1" source="c5" style="endArrow=open;html=1;rounded=0;dashed=1;" target="c4" value="IProductoStock">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" edge="1" parent="1" source="c6" style="endArrow=open;html=1;rounded=0;dashed=1;" target="c5" value="IRecetaConsulta">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" edge="1" parent="1" source="c6" style="endArrow=open;html=1;rounded=0;dashed=1;" target="c7" value="IPrecioProvider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" edge="1" parent="1" source="c7" style="endArrow=open;html=1;rounded=0;dashed=1;" target="c8" value="getNumero">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" edge="1" parent="1" source="c6" style="endArrow=open;html=1;rounded=0;dashed=1;" target="c8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" edge="1" parent="1" source="c3" style="endArrow=open;html=1;rounded=0;" target="c9" value="SQL (TypeORM)">
+          <mxGeometry relative="1" x="-0.1191" y="-13" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Clases-infra" name="Clases-infra">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltip="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Configuracion&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ clave: string&lt;br&gt;+ valor: string&lt;br&gt;+ actualizadoEn: Date&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ConfiguracionService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- copiaLocal: Map&amp;lt;string, string&amp;gt;&lt;br&gt;- temporizadorDeRefresco: Timeout&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ getNumero(clave, def): number&lt;br&gt;+ getTexto(clave, def): string&lt;br&gt;+ listar(): Promise&amp;lt;Configuracion[]&amp;gt;&lt;br&gt;+ actualizar(clave, valor): Promise&amp;lt;Configuracion&amp;gt;&lt;br&gt;- sembrarValoresPorDefecto()&lt;br&gt;- refrescar()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="210" width="330" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ConfiguracionController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ listar()&lt;br&gt;+ actualizar(clave, dto)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="440" width="330" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ActualizarConfiguracionDto&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ valor: string&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="580" width="330" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ApiPreciosService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- configuracionService: ConfiguracionService&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ obtenerPrecio(nombre): Promise&amp;lt;number&amp;gt;&lt;br&gt;- simularFallaTransitoria()&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="60" width="330" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;ListaDeComprasService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- recetaService: RecetaService&lt;br&gt;- apiPreciosService: ApiPreciosService&lt;br&gt;- configuracionService: ConfiguracionService&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ generar(recetaIds): Promise&amp;lt;ListaDeCompras&amp;gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="200" width="330" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;rate limit&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;crearLimitadorDeSolicitudes()&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;(middleware Express)&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ use(req, res, next)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="380" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;cache-aside&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;cache-precios&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;- cachePrecios: Map&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ leerPrecioCacheado(nombre)&lt;br&gt;+ guardarPrecioEnCache(nombre, valor, ttl)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="60" width="340" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;retry&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;reintentar()&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ reintentar(op, intentosMaximos, esperaMs)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="230" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;async request-reply&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;ListaDeComprasController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ generarParaReceta(id)&lt;br&gt;+ generar(dto)&lt;br&gt;+ solicitar(dto)&lt;br&gt;+ consultar(id)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="360" width="340" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="El external configuration store es transversal: ApiPreciosService, ListaDeComprasService y el middleware de rate limit inyectan ConfiguracionService y leen sus valores." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;align=left;spacingLeft=6;spacingTop=4;" vertex="1" parent="1">
+          <mxGeometry x="30" y="690" width="760" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="c3" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="Repository" style="endArrow=open;html=1;" edge="1" parent="1" source="c2" target="c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="inyecta" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="c5" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="inyecta" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="c6" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="inyecta" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="c7" target="c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="usa" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="c6" target="c8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="usa" style="endArrow=open;html=1;dashed=1;" edge="1" parent="1" source="c6" target="c9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="" style="endArrow=open;html=1;" edge="1" parent="1" source="c10" target="c6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="Despliegue" name="Despliegue">
+    <mxGraphModel dx="1355" dy="704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;fillColor=none;dashed=1;spacingLeft=6;spacingTop=4;" value="Host con Docker" vertex="1">
+          <mxGeometry height="600" width="820" x="30" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=6;spacingTop=4;overflow=fill;fillColor=#dae8fc;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;gateway (nginx)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Puertos publicados:&lt;/b&gt; 80 (redirige) y 443 (HTTPS)&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Gatekeeper:&lt;/b&gt; API key · whitelist de rutas · métodos · tamaño de cuerpo&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Offloading:&lt;/b&gt; TLS · gzip · access log&lt;/p&gt;" vertex="1">
+          <mxGeometry height="160" width="360" x="70" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=6;spacingTop=4;overflow=fill;fillColor=#d5e8d4;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;api (Node + NestJS)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Puerto:&lt;/b&gt; 3000 — solo interno, sin publicar&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Componentes:&lt;/b&gt; Producto · Receta · ApiPrecios · ListaDeCompras · Configuración&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Patrones:&lt;/b&gt; rate limit · cache-aside · retry · copia local de config&lt;/p&gt;" vertex="1">
+          <mxGeometry height="185" width="360" x="70" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=6;spacingTop=4;overflow=fill;fillColor=#ffe6cc;" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;db (PostgreSQL 16)&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Puerto:&lt;/b&gt; 5432 — solo interno, sin publicar&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:3px 4px;&quot;&gt;&lt;b&gt;Tablas:&lt;/b&gt; productos · recetas · configuracion&lt;/p&gt;" vertex="1">
+          <mxGeometry height="160" width="310" x="480" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;align=center;verticalAlign=middle;" value="Red recetario (bridge)" vertex="1">
+          <mxGeometry height="50" width="360" x="70" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="volumen db_data" vertex="1">
+          <mxGeometry height="50" width="200" x="480" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;align=left;spacingLeft=6;spacingTop=4;" value="Solo el gateway publica puertos: la API y la base son inalcanzables desde el host, así el gatekeeper es el único punto de entrada. Los clientes hablan HTTPS con el gateway." vertex="1">
+          <mxGeometry height="60" width="660" x="30" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" edge="1" parent="1" source="c2" style="endArrow=open;html=1;" target="c3" value="proxy_pass (HTTP interno)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" edge="1" parent="1" source="c3" style="endArrow=open;html=1;" target="c4" value="TCP 5432">
+          <mxGeometry relative="1" x="-0.2218" y="-9" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="460" y="380" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
