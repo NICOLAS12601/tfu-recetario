@@ -1,0 +1,17 @@
+# Override SOLO para desarrollo local.
+#
+# El docker-compose.yml deja la API y la base sin puertos publicados (detrás
+# del gateway). Para correr la API con `npm run start:dev` hace falta poder
+# llegar a Postgres desde el host, así que este archivo vuelve a publicar los
+# puertos. No se usa para la demo ni para producción.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d db
+#
+services:
+  db:
+    ports:
+      - "5432:5432"
+
+  api:
+    ports:
+      - "3000:3000"

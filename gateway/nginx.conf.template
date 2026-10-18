@@ -1,0 +1,79 @@
+# ---------------------------------------------------------------------------
+# Contenedor de entrada único.
+#
+#   Gatekeeper ....... exige API key (header X-Api-Key) y rechaza rutas,
+#                      métodos y tamaños de cuerpo no previstos.
+#   Gateway Offloading  TLS, compresión gzip y registro de acceso viven acá;
+#                      la API no implementa ninguna de esas tres cosas.
+#
+# Solo GATEKEEPER_API_KEY se sustituye desde el entorno al arrancar (nunca se
+# escribe la clave en el repo). El resto de los $... son variables propias de
+# nginx y quedan intactas.
+# ---------------------------------------------------------------------------
+
+map $http_x_api_key $api_key_ok {
+  default 0;
+  "${GATEKEEPER_API_KEY}" 1;
+}
+
+# Rutas que la API expone. Cualquier otra se rechaza con 404.
+map $uri $ruta_permitida {
+  default 0;
+  "~^/(productos|recetas|lista-de-compras|configuracion)(/|$)" 1;
+  "~^/$" 1;
+}
+
+# Gateway Offloading: registro de acceso con la IP real del cliente. Se emite a
+# stdout, por lo que se ve con `docker compose logs gateway`.
+log_format acceso '$remote_addr - [$time_local] "$request" '
+                   '$status $body_bytes_sent $request_time s';
+
+server {
+  listen 80;
+  server_name _;
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl;
+  server_name _;
+
+  # --- Gateway Offloading: cifrado ---
+  ssl_certificate     /etc/nginx/certs/server.crt;
+  ssl_certificate_key /etc/nginx/certs/server.key;
+  ssl_protocols       TLSv1.2 TLSv1.3;
+
+  # --- Gateway Offloading: compresión ---
+  gzip on;
+  gzip_comp_level 5;
+  gzip_min_length 20;
+  gzip_types application/json;
+  gzip_proxied any;
+
+  # --- Gateway Offloading: registro de acceso ---
+  access_log /dev/stdout acceso;
+  error_log  /dev/stderr warn;
+
+  # --- Gatekeeper: tamaño máximo de cuerpo ---
+  client_max_body_size 10k;
+
+  location / {
+    # --- Gatekeeper: API key ---
+    if ($api_key_ok = 0) { return 401; }
+
+    # --- Gatekeeper: métodos previstos ---
+    if ($request_method !~ ^(GET|HEAD|POST|PATCH)$) { return 405; }
+
+    # --- Gatekeeper: rutas previstas ---
+    if ($ruta_permitida = 0) { return 404; }
+
+    proxy_pass http://api:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Host              $host;
+    proxy_set_header X-Real-IP         $remote_addr;
+    # Se descarta cualquier X-Forwarded-For que mande el cliente: así la IP que
+    # ve la API (y con la que cuenta el rate limit) no se puede falsificar.
+    proxy_set_header X-Forwarded-For   $remote_addr;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}

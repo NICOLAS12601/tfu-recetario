@@ -2,14 +2,15 @@ services:
   db:
     image: postgres:16-alpine
     restart: unless-stopped
+    # Sin `ports`: la base solo es alcanzable dentro de la red interna.
     environment:
       POSTGRES_USER: recetario
       POSTGRES_PASSWORD: recetario
       POSTGRES_DB: recetario
-    ports:
-      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    networks:
+      - recetario
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U recetario"]
       interval: 5s
@@ -19,6 +20,7 @@ services:
   api:
     build: .
     restart: unless-stopped
+    # Sin `ports`: la API solo se alcanza a través del gateway (gatekeeper).
     depends_on:
       db:
         condition: service_healthy
@@ -31,8 +33,37 @@ services:
       DB_PASSWORD: recetario
       DB_NAME: recetario
       PORT: 3000
+    expose:
+      - "3000"
+    networks:
+      - recetario
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:3000/ || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  gateway:
+    build: ./gateway
+    restart: unless-stopped
+    # Punto único de entrada: es el único servicio que publica puertos.
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      # Clave que el gatekeeper exige en el header X-Api-Key. Se toma del
+      # entorno (o del .env) y nunca se escribe en el repo.
+      GATEKEEPER_API_KEY: ${GATEKEEPER_API_KEY:-clave-de-demo}
     ports:
-      - "3000:3000"
+      - "80:80"
+      - "443:443"
+    networks:
+      - recetario
 
 volumes:
   db_data:
+
+networks:
+  recetario:
+    driver: bridge

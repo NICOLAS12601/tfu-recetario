@@ -1,5 +1,7 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import type { IPrecioProvider } from './api-precios.contract.js';
+import { ConfiguracionService } from '../configuracion/configuracion.service.js';
+import { CLAVES_DE_CONFIGURACION } from '../configuracion/configuracion.constants.js';
 
 const PRECIOS_BASE: Record<string, number> = {
   papa: 80,
@@ -13,15 +15,21 @@ const PRECIOS_BASE: Record<string, number> = {
   leche: 70,
   pan: 65,
 };
-const PROBABILIDAD_DE_FALLA = 0.3;
+const PROBABILIDAD_DE_FALLA_POR_DEFECTO = 0.3;
 
 /**
  * No pega a ninguna API real: simula la integración externa con precios
  * fijos + variación aleatoria, y una latencia artificial para que se
  * comporte como una llamada de red de verdad.
+ *
+ * La probabilidad de falla transitoria ya no es una constante: se lee del
+ * external configuration store, para poder mostrar en vivo cómo el retry
+ * (y la caché) la absorben.
  */
 @Injectable()
 export class ApiPreciosService implements IPrecioProvider {
+  constructor(private readonly configuracionService: ConfiguracionService) {}
+
   async obtenerPrecio(nombreProducto: string): Promise<number> {
     await this.simularLatenciaDeRed();
     this.simularFallaTransitoria();
@@ -32,7 +40,11 @@ export class ApiPreciosService implements IPrecioProvider {
   }
 
   private simularFallaTransitoria(): void {
-    if(Math.random() < PROBABILIDAD_DE_FALLA) {
+    const probabilidad = this.configuracionService.getNumero(
+      CLAVES_DE_CONFIGURACION.precioProbabilidadFalla,
+      PROBABILIDAD_DE_FALLA_POR_DEFECTO,
+    );
+    if (Math.random() < probabilidad) {
       throw new ServiceUnavailableException();
     }
   }
