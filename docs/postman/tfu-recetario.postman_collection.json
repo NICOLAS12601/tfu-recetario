@@ -1,0 +1,213 @@
+{
+  "info": {
+    "_postman_id": "c2f7a6e0-4f1a-4c6e-9b3a-tfu-recetario-demo",
+    "name": "TFU Recetario - Demo ACID",
+    "description": "Coleccion pensada para el video demo del TFU: 10 requests en orden que muestran el modelo de componentes en accion y, sobre todo, la atomicidad (ACID) al cocinar una receta. Los IDs de producto/receta se van guardando solos de un request al siguiente (variables de coleccion), no hace falta copiar/pegar UUIDs a mano durante la grabacion.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3000", "type": "string" },
+    { "key": "papaId", "value": "", "type": "string" },
+    { "key": "carneId", "value": "", "type": "string" },
+    { "key": "recetaId", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "1. Crear producto Papa (stock 5)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201', () => pm.response.to.have.status(201));",
+              "const json = pm.response.json();",
+              "pm.collectionVariables.set('papaId', json.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"papa\",\n  \"stock\": 5\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/productos",
+          "host": ["{{base_url}}"],
+          "path": ["productos"]
+        }
+      }
+    },
+    {
+      "name": "2. Crear producto Carne (stock 1, a proposito bajo)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201', () => pm.response.to.have.status(201));",
+              "const json = pm.response.json();",
+              "pm.collectionVariables.set('carneId', json.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"carne\",\n  \"stock\": 1\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/productos",
+          "host": ["{{base_url}}"],
+          "path": ["productos"]
+        }
+      }
+    },
+    {
+      "name": "3. Crear receta Milanesa con papas (papa x3, carne x2)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201', () => pm.response.to.have.status(201));",
+              "const json = pm.response.json();",
+              "pm.collectionVariables.set('recetaId', json.id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Milanesa con papas\",\n  \"ingredientes\": [\n    { \"productoId\": \"{{papaId}}\", \"cantidad\": 3 },\n    { \"productoId\": \"{{carneId}}\", \"cantidad\": 2 }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/recetas",
+          "host": ["{{base_url}}"],
+          "path": ["recetas"]
+        }
+      }
+    },
+    {
+      "name": "4. Detalle de la receta (ver que falta)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/recetas/{{recetaId}}/detalle",
+          "host": ["{{base_url}}"],
+          "path": ["recetas", "{{recetaId}}", "detalle"]
+        }
+      }
+    },
+    {
+      "name": "5. Lista de compras (precio de lo que falta)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/lista-de-compras/receta/{{recetaId}}",
+          "host": ["{{base_url}}"],
+          "path": ["lista-de-compras", "receta", "{{recetaId}}"]
+        }
+      }
+    },
+    {
+      "name": "6. Intentar cocinar -> 409 (stock insuficiente)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 409 - Conflict', () => pm.response.to.have.status(409));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/recetas/{{recetaId}}/cocinar",
+          "host": ["{{base_url}}"],
+          "path": ["recetas", "{{recetaId}}", "cocinar"]
+        }
+      }
+    },
+    {
+      "name": "7. Ver stock -> sin cambios (rollback atomico)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/productos",
+          "host": ["{{base_url}}"],
+          "path": ["productos"]
+        }
+      }
+    },
+    {
+      "name": "8. Reponer stock de Carne (+5)",
+      "request": {
+        "method": "PATCH",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cantidad\": 5\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/productos/{{carneId}}/reponer-stock",
+          "host": ["{{base_url}}"],
+          "path": ["productos", "{{carneId}}", "reponer-stock"]
+        }
+      }
+    },
+    {
+      "name": "9. Cocinar -> 201 (ahora si alcanza)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 201 - Cocinado', () => pm.response.to.have.status(201));"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/recetas/{{recetaId}}/cocinar",
+          "host": ["{{base_url}}"],
+          "path": ["recetas", "{{recetaId}}", "cocinar"]
+        }
+      }
+    },
+    {
+      "name": "10. Ver stock final -> papa=2, carne=4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/productos",
+          "host": ["{{base_url}}"],
+          "path": ["productos"]
+        }
+      }
+    }
+  ]
+}

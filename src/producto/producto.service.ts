@@ -18,9 +18,17 @@ export class ProductoService implements IProductoStock {
     private readonly dataSource: DataSource,
   ) {}
 
-  crear(dto: CreateProductoDto): Promise<Producto> {
+  async crear(dto: CreateProductoDto): Promise<Producto> {
     const producto = this.productoRepository.create(dto);
-    return this.productoRepository.save(producto);
+    try {
+      return await this.productoRepository.save(producto);
+    } catch (error) {
+      // Codigo 23505 de Postgres: unique_violation (el nombre ya existe).
+      if ((error as { code?: string }).code === '23505') {
+        throw new ConflictException(`Ya existe un producto llamado "${dto.nombre}"`);
+      }
+      throw error;
+    }
   }
 
   listar(): Promise<Producto[]> {
