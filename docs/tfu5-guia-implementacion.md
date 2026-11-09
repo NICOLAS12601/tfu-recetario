@@ -1,6 +1,6 @@
 # TFU 5 — Guía de implementación (Parte 2)
 
-Esta guía resume lo que decidimos en la Parte 1 y cómo se traduce a código, para que cualquiera del grupo pueda implementar la Parte 2 sin tener que reconstruir el contexto. La fuente de verdad del diseño es el documento de la Parte 1 (Google Doc "TFU 5 ANDIS 2"); si algo de acá contradice al Doc, manda el Doc y hay que actualizar esta guía.
+Esta guía traduce a código el diseño final de la Parte 1, para que cualquiera del grupo pueda implementar la Parte 2 sin reconstruir el contexto. El diseño está cerrado: es el del documento entregado, copiado en [tfu5-parte1-documento.md](tfu5-parte1-documento.md). Si algo de esta guía contradice al documento, manda el documento y hay que corregir la guía.
 
 Los diagramas están en [docs/diagramas/](diagramas/): `componentes.png`, `despliegue.png` y `secuencia.png`. La fuente editable de los tres es [tfu5-diagramas.drawio](diagramas/tfu5-diagramas.drawio), con una página por diagrama; se abre en [app.diagrams.net](https://app.diagrams.net).
 

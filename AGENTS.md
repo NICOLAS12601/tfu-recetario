@@ -1,27 +1,33 @@
 # Instrucciones para asistentes de IA
 
-Este repo es el TFU de Análisis y Diseño (grupo 6): un recetario en NestJS + PostgreSQL. La tarea en curso es el **TFU 5, Parte 2**: migrar el monolito actual a una arquitectura orientada a servicios (SOA) distribuida.
+Este repo es el TFU de Análisis y Diseño (grupo 6): un recetario en NestJS + PostgreSQL. La tarea en curso es el **TFU 5, Parte 2**: **implementar** la arquitectura orientada a servicios (SOA) diseñada y entregada en la Parte 1.
 
-## Leé esto antes de proponer o escribir código
+**El diseño está cerrado.** Es el del documento entregado, y la Parte 2 consiste en implementarlo tal cual. No propongas otra arquitectura, otra partición de servicios ni otros patrones: tu trabajo es escribir el código que cumple ese diseño.
 
-1. **[docs/tfu5-guia-implementacion.md](docs/tfu5-guia-implementacion.md)** es la guía de la Parte 2. Tiene qué módulo va a cada servicio, puertos, protocolos, valores de los patrones y escenarios de prueba. Es el punto de partida obligatorio.
-2. **[docs/diagramas/](docs/diagramas/)**: diagramas de componentes, despliegue y secuencia (PNG). La fuente editable es `tfu5-diagramas.drawio`.
-3. La fuente de verdad del diseño es el documento de la Parte 1 del grupo (Google Doc "TFU 5 ANDIS 2"). Si la guía y el Doc no coinciden, manda el Doc: avisale al usuario y actualizá la guía en vez de inventar una tercera versión.
+## Dónde está el diseño
 
-## Decisiones que no hay que cambiar sin consultar al grupo
+1. **[docs/tfu5-parte1-documento.md](docs/tfu5-parte1-documento.md)**: el documento final de la Parte 1 (copia exportada del Google Doc del grupo). Es la **fuente de verdad**. Ante cualquier duda o contradicción, manda este documento.
+2. **[docs/tfu5-guia-implementacion.md](docs/tfu5-guia-implementacion.md)**: el mismo diseño traducido a tareas de código (qué módulo va a cada servicio, puertos, protocolos, valores de los patrones y escenarios de prueba). Empezá por acá para implementar.
+3. **[docs/diagramas/](docs/diagramas/)**: los diagramas de componentes, despliegue y secuencia del documento.
 
-Estas decisiones están justificadas en el documento entregado y se defienden oralmente. Si una tarea parece requerir cambiarlas, preguntá antes.
+## Lo que el código tiene que cumplir
 
-- **Tres servicios:** `inventario-recetas`, `lista-compras` y `precios`, más un gateway nginx sin lógica de negocio.
-- **Producto y Receta quedan en el mismo servicio** (`inventario-recetas`). Cocinar es una transacción ACID local; no separarlos ni introducir sagas.
-- **SOAP/WSDL solo para `consultarDisponibilidad`** (lista-compras → inventario-recetas). Todo lo demás es REST/JSON.
-- **Circuit Breaker, retry, timeout y la caché del último precio viven en `lista-compras`**, no en `precios`. El stock nunca se cachea.
-- Los precios faltantes se piden **en una sola llamada** (consulta agrupada).
-- Despliegue con **Docker Compose en un único host**, un contenedor por servicio. Las URLs entre servicios van en variables de entorno.
+Todo esto está en el documento; es la lista corta para no salirse del diseño:
+
+- **Tres servicios NestJS:** `inventario-recetas`, `lista-compras` y `precios`, más un gateway nginx que solo enruta y no tiene lógica de negocio.
+- **Producto y Receta en el mismo servicio** (`inventario-recetas`). Cocinar sigue siendo una transacción ACID local; no hay sagas.
+- **SOAP con WSDL solo para `consultarDisponibilidad`**, que consume `lista-compras`. Todo lo demás es REST/JSON.
+- **En `lista-compras`:** timeout de 2 s, retry con hasta 2 reintentos, Circuit Breaker sobre Precios (se abre con 3 fallos, pasa a semiabierto a los 10 s) y fallback con caché en memoria del último precio conocido. Los precios desactualizados se marcan "no actualizado" y los que nunca se obtuvieron, "no disponible".
+- **El stock no se cachea:** si Inventario no responde, se devuelve 503.
+- **Los precios faltantes se piden en una sola llamada** (consulta agrupada).
+- **Despliegue:** Docker Compose en un único host, un contenedor por servicio. Las URLs entre servicios van en variables de entorno.
+- **Pruebas de disponibilidad:** los 4 escenarios del documento, con 100 solicitudes cada uno, midiendo tasa de éxito y tiempo de respuesta (con circuito cerrado, abierto y sin Circuit Breaker).
+
+Si algo de la implementación realmente no se puede hacer como dice el documento, no lo cambies por tu cuenta: explicale el problema al usuario.
 
 ## Estado actual del código
 
-`src/` todavía es el monolito de la entrega anterior: un solo proyecto NestJS con los módulos `producto`, `receta`, `api-precios` y `lista-de-compras`, comunicados por interfaces `*.contract.ts`. El README explica ese diseño previo.
+`src/` todavía es el monolito de la entrega anterior: un solo proyecto NestJS con los módulos `producto`, `receta`, `api-precios` y `lista-de-compras`, comunicados por interfaces `*.contract.ts`. Ese código es la base que se reparte entre los tres servicios. El README explica ese diseño previo.
 
 ## Comandos
 
@@ -38,4 +44,4 @@ La colección [docs/postman/tfu-recetario.postman_collection.json](docs/postman/
 ## Convenciones
 
 - Escribí en español (código de dominio, mensajes de error, docs y commits), como el resto del repo.
-- Es un trabajo académico: el grupo tiene que poder explicar cada decisión. Explicá el porqué de lo que propongas, no solo el código.
+- Es un trabajo académico y el grupo tiene que poder explicar el código en la defensa: explicá qué hace cada parte y cómo se relaciona con el diseño del documento.

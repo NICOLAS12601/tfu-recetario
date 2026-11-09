@@ -2,7 +2,7 @@
 
 API REST que integra un recetario con una cocina real: no es solo un catálogo de recetas, sino el sistema que sabe qué productos tenés en stock, qué podés cocinar con lo que tenés, qué te falta si no alcanza, y —a través de una API de precios simulada— una idea de cuánto te saldría completar lo que te falta.
 
-> **TFU 5 (en curso):** la migración a SOA de la Parte 2 está descrita en [docs/tfu5-guia-implementacion.md](docs/tfu5-guia-implementacion.md), con los diagramas en [docs/diagramas/](docs/diagramas/). Las instrucciones para asistentes de IA están en [AGENTS.md](AGENTS.md).
+> **TFU 5 (en curso):** el diseño final de la Parte 1 está en [docs/tfu5-parte1-documento.md](docs/tfu5-parte1-documento.md), y cómo implementarlo en la Parte 2, en [docs/tfu5-guia-implementacion.md](docs/tfu5-guia-implementacion.md). Las instrucciones para asistentes de IA están en [AGENTS.md](AGENTS.md).
 
 ## Índice
 
