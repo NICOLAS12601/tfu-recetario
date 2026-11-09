@@ -1,38 +1,75 @@
+# Un contenedor por servicio. Los tres servicios NestJS usan la misma imagen;
+# la variable SERVICE elige cuál arranca (ver src/main.ts).
 services:
-  db:
+  postgres:
     image: postgres:16-alpine
+    container_name: postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: recetario
       POSTGRES_PASSWORD: recetario
       POSTGRES_DB: recetario
-    ports:
-      - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data_soa:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U recetario"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  api:
+  # Producto + Receta: el único servicio con base de datos.
+  inventario-recetas:
     build: .
+    container_name: inventario-recetas
     restart: unless-stopped
     depends_on:
-      db:
+      postgres:
         condition: service_healthy
     environment:
-      # DB_HOST=db (nombre del servicio, no localhost): dentro de la red
-      # de docker compose los contenedores se resuelven por nombre.
-      DB_HOST: db
+      SERVICE: inventario-recetas
+      PORT: 8081
+      DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: recetario
       DB_PASSWORD: recetario
       DB_NAME: recetario
-      PORT: 3000
+      SOAP_URL: http://inventario-recetas:8081/ws
     ports:
-      - "3000:3000"
+      - "8081:8081"
+
+  precios:
+    build: .
+    container_name: precios
+    restart: unless-stopped
+    environment:
+      SERVICE: precios
+      PORT: 8082
+    ports:
+      - "8082:8082"
+
+  lista-compras:
+    build: .
+    container_name: lista-compras
+    restart: unless-stopped
+    environment:
+      SERVICE: lista-compras
+      PORT: 8080
+      # URLs de los otros servicios: por nombre dentro de la red de compose.
+      INVENTARIO_SOAP_URL: http://inventario-recetas:8081/ws
+      PRECIOS_URL: http://precios:8082
+      CB_ENABLED: ${CB_ENABLED:-true}
+    ports:
+      - "8080:8080"
+
+  # Gateway: solo enruta, sin lógica de negocio.
+  gateway:
+    image: nginx:1.27-alpine
+    container_name: gateway
+    restart: unless-stopped
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
 
 volumes:
-  db_data:
+  db_data_soa:

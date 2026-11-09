@@ -5,9 +5,9 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { ProductoModule } from './producto/producto.module.js';
 import { RecetaModule } from './receta/receta.module.js';
-import { ApiPreciosModule } from './api-precios/api-precios.module.js';
-import { ListaDeComprasModule } from './lista-de-compras/lista-de-compras.module.js';
 
+// Servicio Inventario y Recetas (Producto + Receta): el único con base de
+// datos, así cocinar sigue siendo una transacción ACID local.
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -28,8 +28,6 @@ import { ListaDeComprasModule } from './lista-de-compras/lista-de-compras.module
     }),
     ProductoModule,
     RecetaModule,
-    ApiPreciosModule,
-    ListaDeComprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

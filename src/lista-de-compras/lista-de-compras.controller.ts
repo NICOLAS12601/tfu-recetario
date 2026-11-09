@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ListaDeComprasService } from './lista-de-compras.service.js';
 import { GenerarListaDto } from './dto/generar-lista.dto.js';
 
-@Controller('lista-de-compras')
+@Controller('listas')
 export class ListaDeComprasController {
   constructor(private readonly listaDeComprasService: ListaDeComprasService) {}
 

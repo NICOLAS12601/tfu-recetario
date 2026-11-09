@@ -109,3 +109,22 @@ Endpoints:
 | POST | `/recetas/:id/cocinar` | Descuenta el stock de todos los ingredientes en una sola transacción |
 | GET | `/lista-de-compras/receta/:recetaId` | Lista de compras (con precios) de lo que falta para esa receta |
 | POST | `/lista-de-compras` | Lista de compras combinada para varias recetas (`{ recetaIds: [...] }`) |
+
+## 7. TFU 5 — Versión SOA (Parte 2)
+
+Mismo código, tres servicios: la variable `SERVICE` elige qué módulo arranca cada contenedor ([src/main.ts](src/main.ts)).
+
+| Servicio | Puerto | Qué tiene |
+|---|---|---|
+| `inventario-recetas` | 8081 | Producto + Receta, la única base de datos. SOAP `consultarDisponibilidad` en `/ws?wsdl` |
+| `lista-compras` | 8080 | `POST /listas`. Llama a Inventario por SOAP y a Precios por REST, con timeout 2 s, 2 reintentos, Circuit Breaker y caché de precios |
+| `precios` | 8082 | `POST /precios` con `{ "productos": [...] }` (consulta agrupada) |
+| `gateway` (nginx) | 80 | Solo enruta `/listas`, `/productos` y `/recetas` |
+
+```bash
+docker compose up -d --build
+./scripts/seed.sh          # datos de prueba
+./scripts/escenarios.sh    # 4 escenarios x 100 solicitudes -> ../resultados/ (fuera del repo)
+```
+
+Archivos nuevos en `lista-de-compras/`: `clientes-remotos.ts` (clientes SOAP y REST), `reintentar.ts` y `circuit-breaker.ts`. En `receta/`: `disponibilidad.soap.ts` (WSDL y servicio SOAP).
